@@ -15,11 +15,6 @@ export const TYPING_IDLE_MS = 5_000;
 /** The engine is told again at most this often while typing goes on (the wire is throttled there too). */
 const TELL_EVERY_MS = 1_000;
 
-/** The contact of this chat is typing now. */
-export function usePeerTyping(peerPubKey?: string): boolean {
-  return useSyncExternalStore(subscribe, () => !!(peerPubKey && engine.linkByPeer(peerPubKey)?.peerTyping));
-}
-
 /** What the contact of this chat is doing now (typing, recording, thinking, a bot's status), or null. */
 export function usePeerTypingActivity(peerPubKey?: string): TypingActivity | null {
   const link = () => (peerPubKey ? engine.linkByPeer(peerPubKey) : undefined);
