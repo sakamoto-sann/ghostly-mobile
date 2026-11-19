@@ -57,11 +57,6 @@ export function setFaceChoice(peerKey: string, choice: FaceChoice | undefined): 
   window.dispatchEvent(new Event(FACE_EVENT));
 }
 
-/** Forgets a contact's choice with their chat. */
-export function forgetFaceChoice(peerKey: string): void {
-  try { localStorage.removeItem(faceKey(peerKey)); } catch { /* storage unavailable */ }
-}
-
 const subscribeChoices = (listener: () => void) => {
   window.addEventListener(FACE_EVENT, listener);
   window.addEventListener("storage", listener);
